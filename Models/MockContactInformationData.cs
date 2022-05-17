@@ -23,9 +23,11 @@ namespace Customer.Models
                 PhoneNumber = "0701113334",
             }
         };
-        public ContactInformation AddContactInformation(ContactInformation contactInformation)
+
+        public void AddContactInformation(ContactInformation contactInformation)
         {
-            throw new NotImplementedException();
+            contactInformation.Id = Guid.NewGuid();
+            contactInformations.Add(contactInformation);
         }
 
         public void DeleteContactInformation(ContactInformation contactInformation)

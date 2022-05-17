@@ -31,5 +31,16 @@ namespace Customer.Controllers
 
             return NotFound($"Contact information with Id: {id} was not found");
         }
+
+        [HttpPost]
+        [Route("api/[controller]")]
+        public IActionResult AddContactInformation(ContactInformation contactInformation)
+        {
+            //TODO add validation on the model
+            _contactInformationData.AddContactInformation(contactInformation);
+
+            // return the user to the hosted instance and get method passing id
+            return Created($"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}/{contactInformation.Id}", contactInformation);
+        }
     }
 }
