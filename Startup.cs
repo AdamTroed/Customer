@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+using Customer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Customer
 {
@@ -26,6 +21,9 @@ namespace Customer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            // use singleton as we want the data to remain the same during the lifetime of the application
+            services.AddSingleton<MockContactInformationData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
