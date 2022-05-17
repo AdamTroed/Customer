@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Customer.Models
 {
@@ -39,7 +40,7 @@ namespace Customer.Models
 
         public ContactInformation GetContactInformation(Guid id)
         {
-            throw new NotImplementedException();
+            return contactInformations.SingleOrDefault(x => x.Id == id);
         }
 
         public List<ContactInformation> GetContactInformations()
