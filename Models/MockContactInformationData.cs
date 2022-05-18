@@ -35,9 +35,15 @@ namespace Customer.Models
             throw new NotImplementedException();
         }
 
-        public ContactInformation EditContactInformation(ContactInformation contactInformation)
+        public ContactInformation UpdateContactInformation(ContactInformation contactInformation)
         {
-            throw new NotImplementedException();
+            //TODO this needs to be done with an IMapper or so, being done automatically
+            var existingContactInformation = GetContactInformation(contactInformation.Id);
+            existingContactInformation.SocialSecurityNumber = contactInformation.SocialSecurityNumber;
+            existingContactInformation.EmailAddress = contactInformation.EmailAddress;
+            existingContactInformation.PhoneNumber = contactInformation.PhoneNumber;
+
+            return existingContactInformation;
         }
 
         public ContactInformation GetContactInformation(Guid id)

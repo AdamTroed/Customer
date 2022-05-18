@@ -55,6 +55,26 @@ namespace Customer.Controllers
             return CreatedAtRoute(nameof(GetContactInformation), new { Id = contactInformation.Id }, contactInformation);
         }
 
+        /// <summary>
+        /// Update ContactInformation object
+        /// 
+        /// Patch api/contacts/{id}
+        /// 
+        /// TODO want a DTO class without id property here as that is for internal use and should not be update-able
+        /// </summary>
+        /// <returns></returns>
+        [HttpPatch("{id}")]
+        public IActionResult UpdateContactInformation(Guid id, ContactInformation contactInformation)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var information = _contactInformationData.GetContactInformation(id);
+            if (information == null)
+                return NotFound();
+            
+            // update and return the updated object
+            return Ok(_contactInformationData.UpdateContactInformation(contactInformation));
         }
     }
 }
