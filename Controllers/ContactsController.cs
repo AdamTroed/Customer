@@ -45,11 +45,15 @@ namespace Customer.Controllers
         [HttpPost]
         public IActionResult AddContactInformation(ContactInformation contactInformation)
         {
-            //TODO add validation on the model
-            _contactInformationData.AddContactInformation(contactInformation);
+            if (ModelState.IsValid)
+            {
+                _contactInformationData.AddContactInformation(contactInformation);
 
-            // return the user to the hosted instance and get method passing id
-            return Created($"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}/{contactInformation.Id}", contactInformation);
+                // return the user to the hosted instance and GET method passing id
+                return Created($"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}/{contactInformation.Id}", contactInformation);
+            }
+
+            return BadRequest();
         }
     }
 }
