@@ -5,10 +5,10 @@ using System;
 namespace Customer.Controllers
 {
     [ApiController]
-    public class ContactInformationController : ControllerBase
+    public class ContactsController : ControllerBase
     {
         private MockContactInformationData _contactInformationData;
-        public ContactInformationController(MockContactInformationData contactInformationData)
+        public ContactsController(MockContactInformationData contactInformationData)
         {
             _contactInformationData = contactInformationData;
         }
@@ -32,6 +32,12 @@ namespace Customer.Controllers
             return NotFound($"Contact information with Id: {id} was not found");
         }
 
+        /// <summary>
+        /// Add a new ContactInformation object
+        /// 
+        /// Should accept dto model but due to time, it does not
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/[controller]")]
         public IActionResult AddContactInformation(ContactInformation contactInformation)

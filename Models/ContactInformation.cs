@@ -4,6 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Customer.Models
 {
+    /// <summary>
+    /// In this project this class serves as a DTO and and domain entity
+    /// These should be separate, but due to the time limit, it does not
+    /// </summary>
     public class ContactInformation
     {
         /// <summary>
