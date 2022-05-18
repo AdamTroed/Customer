@@ -76,5 +76,22 @@ namespace Customer.Controllers
             // update and return the updated object
             return Ok(_contactInformationData.UpdateContactInformation(contactInformation));
         }
+
+        /// <summary>
+        /// Delete a ContactInformation object
+        /// 
+        /// DELETE api/contacts/{id}
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete]
+        public IActionResult DeleteContactInformation(Guid id)
+        {
+            var information = _contactInformationData.GetContactInformation(id);
+            if (information == null)
+                return NotFound();
+
+            _contactInformationData.DeleteContactInformation(information);
+            return Ok();
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace Customer.Models
 
         public void DeleteContactInformation(ContactInformation contactInformation)
         {
-            throw new NotImplementedException();
+            contactInformations.Remove(contactInformation);
         }
 
         public ContactInformation UpdateContactInformation(ContactInformation contactInformation)
