@@ -15,6 +15,9 @@ namespace Customer.Core.Attributes
 
         public override bool IsValid(object value)
         {
+            if (value == null)
+                return false;
+
             var valueLength = value.ToString().Length;
 
             return valueLength >= _minLenghtValue && valueLength <= _maxLenghtValue;

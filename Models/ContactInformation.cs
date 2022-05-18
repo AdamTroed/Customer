@@ -19,7 +19,7 @@ namespace Customer.Models
 
         [Required]
         [Lenght(10, 12, ErrorMessage = "Invalid lenght of social security number")]
-        public long SocialSecurityNumber { get; set; }
+        public long? SocialSecurityNumber { get; set; }
 
         [EmailAddress]
         public string EmailAddress { get; set; }
