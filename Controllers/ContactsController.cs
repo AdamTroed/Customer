@@ -25,7 +25,7 @@ namespace Customer.Controllers
         }
 
         // GET api/contacts/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetContactInformation")]
         public IActionResult GetContactInformation(Guid id)
         {
             var information = _contactInformationData.GetContactInformation(id);
@@ -40,20 +40,21 @@ namespace Customer.Controllers
         /// Add a new ContactInformation object
         /// 
         /// POST api/contacts
+        /// 
+        /// TODO want a DTO without id property here as that is for internal use
         /// </summary>
         /// <returns></returns>
         [HttpPost]
         public IActionResult AddContactInformation(ContactInformation contactInformation)
         {
-            if (ModelState.IsValid)
-            {
-                _contactInformationData.AddContactInformation(contactInformation);
+            if (!ModelState.IsValid)
+                return BadRequest();
 
-                // return the user to the hosted instance and GET method passing id
-                return Created($"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}/{contactInformation.Id}", contactInformation);
-            }
+            _contactInformationData.AddContactInformation(contactInformation);
 
-            return BadRequest();
+            return CreatedAtRoute(nameof(GetContactInformation), new { Id = contactInformation.Id }, contactInformation);
+        }
+
         }
     }
 }
