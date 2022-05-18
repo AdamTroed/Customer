@@ -4,6 +4,10 @@ using System;
 
 namespace Customer.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    [Route("api/contacts")]
     [ApiController]
     public class ContactsController : ControllerBase
     {
@@ -13,15 +17,15 @@ namespace Customer.Controllers
             _contactInformationData = contactInformationData;
         }
 
+        // GET api/contacts
         [HttpGet]
-        [Route("api/[controller]")]
         public IActionResult GetContactInformations()
         {
             return Ok(_contactInformationData.GetContactInformations());
         }
 
-        [HttpGet]
-        [Route("api/[controller]/{id}")]
+        // GET api/contacts/{id}
+        [HttpGet("{id}")]
         public IActionResult GetContactInformation(Guid id)
         {
             var information = _contactInformationData.GetContactInformation(id);
@@ -35,11 +39,10 @@ namespace Customer.Controllers
         /// <summary>
         /// Add a new ContactInformation object
         /// 
-        /// Should accept dto model but due to time, it does not
+        /// POST api/contacts
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/[controller]")]
         public IActionResult AddContactInformation(ContactInformation contactInformation)
         {
             //TODO add validation on the model
