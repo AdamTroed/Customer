@@ -34,3 +34,8 @@ Let's break down the command:
 -   `--name`, this is us giving our container name,  `myapp`. If we don't specify a name one will otherwise be generated for us. 
 
 Our last argument is the image name  `customerapi`.
+
+## API endpoints
+
+For API endpoint documentation, please use swagger until it is in place in here, swagger is shown in the root path.
+
