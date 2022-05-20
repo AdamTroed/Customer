@@ -35,10 +35,10 @@ namespace Customer.Models
             contactInformations.Remove(contactInformation);
         }
 
-        public ContactInformation UpdateContactInformation(ContactInformation contactInformation)
+        public ContactInformation UpdateContactInformation(Guid id, ContactInformation contactInformation)
         {
             //TODO this needs to be done with an IMapper or so, being done automatically
-            var existingContactInformation = GetContactInformation(contactInformation.Id);
+            var existingContactInformation = GetContactInformation(id);
             existingContactInformation.SocialSecurityNumber = contactInformation.SocialSecurityNumber;
             existingContactInformation.EmailAddress = contactInformation.EmailAddress;
             existingContactInformation.PhoneNumber = contactInformation.PhoneNumber;

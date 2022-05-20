@@ -58,15 +58,12 @@ namespace Customer.Controllers
         /// <summary>
         /// Update ContactInformation object
         /// 
-        /// Patch api/contacts/{id}
+        /// Put api/contacts/{id}
         /// 
         /// TODO want a DTO class without id property here as that is for internal use and should not be update-able
-        /// 
-        /// As only UPDATE was specified in the instructions, we do not add an PUT method, which also adds a new
-        /// record if the item passed does not exist.
         /// </summary>
         /// <returns></returns>
-        [HttpPatch("{id}")]
+        [HttpPut("{id}")]
         public IActionResult UpdateContactInformation(Guid id, ContactInformation contactInformation)
         {
             if (!ModelState.IsValid)
@@ -77,7 +74,7 @@ namespace Customer.Controllers
                 return NotFound();
             
             // update and return the updated object
-            return Ok(_contactInformationData.UpdateContactInformation(contactInformation));
+            return Ok(_contactInformationData.UpdateContactInformation(id ,contactInformation));
         }
 
         /// <summary>
