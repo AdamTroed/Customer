@@ -30,10 +30,10 @@ namespace Customer.Controllers
         {
             var information = _contactInformationData.GetContactInformation(id);
 
-            if (information != null)
-                return Ok(information);
+            if (information == null)
+                return NotFound($"Contact information with Id: {id} was not found");
 
-            return NotFound($"Contact information with Id: {id} was not found");
+            return Ok(information);
         }
 
         /// <summary>
