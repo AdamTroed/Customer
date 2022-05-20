@@ -1,4 +1,5 @@
-﻿using Customer.Models;
+﻿using AutoMapper;
+using Customer.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -12,9 +13,11 @@ namespace Customer.Controllers
     public class ContactsController : ControllerBase
     {
         private MockContactInformationData _contactInformationData;
-        public ContactsController(MockContactInformationData contactInformationData)
+        private readonly IMapper _mapper;
+        public ContactsController(MockContactInformationData contactInformationData, IMapper mapper)
         {
             _contactInformationData = contactInformationData;
+            _mapper = mapper;
         }
 
         // GET api/contacts
