@@ -51,7 +51,7 @@ namespace Customer.Models
             return contactInformations.SingleOrDefault(x => x.Id == id);
         }
 
-        public List<ContactInformation> GetContactInformations()
+        public List<ContactInformation> GetAllContactInformation()
         {
             return contactInformations;
         }

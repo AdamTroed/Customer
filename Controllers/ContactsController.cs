@@ -19,9 +19,9 @@ namespace Customer.Controllers
 
         // GET api/contacts
         [HttpGet]
-        public IActionResult GetContactInformations()
+        public IActionResult GetAllContactInformation()
         {
-            return Ok(_contactInformationData.GetContactInformations());
+            return Ok(_contactInformationData.GetAllContactInformation());
         }
 
         // GET api/contacts/{id}
