@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Customer.Dtos;
 using Customer.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -36,7 +37,7 @@ namespace Customer.Controllers
             if (information == null)
                 return NotFound($"Contact information with Id: {id} was not found");
 
-            return Ok(information);
+            return Ok(_mapper.Map<ContactInformationReadDto>(information));
         }
 
         /// <summary>
