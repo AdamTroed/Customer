@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Customer.Models
 {
+    /// <summary>
+    /// Fake DB
+    /// </summary>
     public class MockContactInformationData
     {
         private List<ContactInformation> contactInformations = new List<ContactInformation>()
@@ -35,10 +38,9 @@ namespace Customer.Models
             contactInformations.Remove(contactInformation);
         }
 
-        public ContactInformation UpdateContactInformation(Guid id, ContactInformation contactInformation)
+        public ContactInformation UpdateContactInformation(ContactInformation contactInformation)
         {
-            //TODO this needs to be done with an IMapper or so, being done automatically
-            var existingContactInformation = GetContactInformation(id);
+            var existingContactInformation = GetContactInformation(contactInformation.Id);
             existingContactInformation.SocialSecurityNumber = contactInformation.SocialSecurityNumber;
             existingContactInformation.EmailAddress = contactInformation.EmailAddress;
             existingContactInformation.PhoneNumber = contactInformation.PhoneNumber;

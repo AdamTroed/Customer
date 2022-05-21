@@ -47,7 +47,7 @@ namespace Customer.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult AddContactInformation(ContactInformationCreateDto contactInformation)
+        public IActionResult AddContactInformation(ContactInformationUpsertDto contactInformation)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -62,22 +62,24 @@ namespace Customer.Controllers
         /// Update ContactInformation object
         /// 
         /// Put api/contacts/{id}
-        /// 
-        /// TODO want a DTO class without id property here as that is for internal use and should not be update-able
         /// </summary>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult UpdateContactInformation(Guid id, ContactInformation contactInformation)
+        public IActionResult UpdateContactInformation(Guid id, ContactInformationUpsertDto contactInformationUpsertDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var information = _contactInformationData.GetContactInformation(id);
-            if (information == null)
+            var informationFromRepo = _contactInformationData.GetContactInformation(id);
+            if (informationFromRepo == null)
                 return NotFound();
-            
-            // update and return the updated object
-            return Ok(_contactInformationData.UpdateContactInformation(id ,contactInformation));
+
+            // map and update the repo
+            var informationFromRepoUpdated = _mapper.Map(contactInformationUpsertDto, informationFromRepo);
+            _contactInformationData.UpdateContactInformation(informationFromRepoUpdated);
+
+            // return the updated object
+            return Ok(_mapper.Map<ContactInformationReadDto>(informationFromRepoUpdated));
         }
 
         /// <summary>

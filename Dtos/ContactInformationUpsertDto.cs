@@ -1,10 +1,9 @@
 ﻿using Customer.Core.Attributes;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Customer.Dtos
 {
-    public class ContactInformationCreateDto
+    public class ContactInformationUpsertDto
     {
         [Required]
         [Lenght(10, 12, ErrorMessage = "Invalid lenght of social security number")]
