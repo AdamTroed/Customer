@@ -15,6 +15,7 @@ namespace Customer.Controllers
     {
         private MockContactInformationData _contactInformationData;
         private readonly IMapper _mapper;
+
         public ContactsController(MockContactInformationData contactInformationData, IMapper mapper)
         {
             _contactInformationData = contactInformationData;
