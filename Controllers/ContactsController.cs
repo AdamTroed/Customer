@@ -47,12 +47,12 @@ namespace Customer.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult AddContactInformation(ContactInformationUpsertDto contactInformation)
+        public IActionResult AddContactInformation(ContactInformationUpsertDto contactInformationUpsertDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var informationModel = _mapper.Map<ContactInformation>(contactInformation);
+            var informationModel = _mapper.Map<ContactInformation>(contactInformationUpsertDto);
             _contactInformationData.AddContactInformation(informationModel);
 
             return CreatedAtRoute(nameof(GetContactInformation), new { Id = informationModel.Id }, _mapper.Map<ContactInformationReadDto>(informationModel));
