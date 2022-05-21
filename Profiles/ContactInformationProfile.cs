@@ -9,6 +9,7 @@ namespace Customer.Profiles
         public ContactInformationProfile()
         {
             CreateMap<ContactInformation, ContactInformationReadDto>();
+            CreateMap<ContactInformationCreateDto, ContactInformation>();
         }
     }
 }

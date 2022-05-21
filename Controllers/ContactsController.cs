@@ -44,19 +44,18 @@ namespace Customer.Controllers
         /// Add a new ContactInformation object
         /// 
         /// POST api/contacts
-        /// 
-        /// TODO want a DTO without id property here as that is for internal use
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult AddContactInformation(ContactInformation contactInformation)
+        public IActionResult AddContactInformation(ContactInformationCreateDto contactInformation)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            _contactInformationData.AddContactInformation(contactInformation);
+            var informationModel = _mapper.Map<ContactInformation>(contactInformation);
+            _contactInformationData.AddContactInformation(informationModel);
 
-            return CreatedAtRoute(nameof(GetContactInformation), new { Id = contactInformation.Id }, contactInformation);
+            return CreatedAtRoute(nameof(GetContactInformation), new { Id = informationModel.Id }, _mapper.Map<ContactInformationReadDto>(informationModel));
         }
 
         /// <summary>
