@@ -6,7 +6,7 @@ namespace Customer.Dtos
     public class ContactInformationUpsertDto
     {
         [Required]
-        [Lenght(10, 12, ErrorMessage = "Invalid lenght of social security number")]
+        [Lenght(10, 12, ErrorMessage = "Invalid lenght of social security number. It has to be between 10-12 numbers.")]
         public long? SocialSecurityNumber { get; set; }
 
         [EmailAddress]
